@@ -1,3 +1,32 @@
-<p>
-  multiplex-movie works!
-</p>
+<div class="container">
+  <h2>Movie List</h2>
+  <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Movie Name</th>
+          <th scope="col">Screen Number</th>
+          <th scope="col">Show Time</th>
+          <th scope="col">Seat Number</th>
+          <th scope="col">Cost</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor= "let movie of movieList">
+          <tr>
+            <th scope="row">{{movie.movieName}}</th>
+            <td>{{movie.screenNo}}</td>
+            <td>{{movie.showTime}}</td>
+            <td>{{movie.seatNumber}}</td>
+            <td>{{movie.cost}}</td>
+            <td>
+              <input type="button" name="" value="Edit" (click)="editMovie(movie)" class="btn btn-primary">
+            </td>
+            <td>
+              <input type="button" name="" value="Delete" (click)="deleteMovie(movie._id)" class="btn btn-danger">
+            </td>
+          </tr>
+      </tbody>
+  </table>
+</div>

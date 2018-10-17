@@ -1,0 +1,49 @@
+<form #frm="ngForm" (ngSubmit)="sendMovie(frm)">
+  <h4>Movie Details</h4>
+  <hr>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="movieName">Select Movie Name</label>
+      <select class="form-control" id="movieName"  [value]="selectedMovieName" name="selectedMovieName" [(ngModel)]="selectedMovieName">
+        <option *ngFor = "let movie of movieName">
+          {{movie}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="seatNumber">Select Movie Time</label>
+      <select class="form-control" id="seatNumber" [value]="selectedShowTime" name="selectedShowTime" [(ngModel)]="selectedShowTime" (ngModelChange)="updateCost()">
+        <option *ngFor = "let time of showTime">
+          {{time}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="screenNo">Select Screen</label>
+      <select class="form-control" id="screenNo" [value]="selectedScreenNo" name="selectedScreenNo" [(ngModel)]="selectedScreenNo">
+        <option *ngFor= "let screen of screenNo" >
+          {{screen}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="seatNumber">Select Seat</label>
+      <select class="form-control" id="seatNumber" [value]="selectedSeatNumber" name="selectedSeatNumber" [(ngModel)]="selectedSeatNumber" (ngModelChange)="updateCost()">
+        <option *ngFor = "let seat of seatNumber">
+          {{seat}}
+        </option>
+      </select>
+    </div>
+  </div>
+    <label>Total Cost</label>
+    <div class="input-group-prepend">
+      <span class="input-group-text">Rs.</span>
+      <span class="input-group-text">{{cost}}</span>
+    </div>
+  <div class="form-group">
+    <br>
+    <input type="submit" [ngClass]="isEdited ? 'btn btn-info' : 'btn btn-success'" [value]="isEdited?'Edit':'Add'">
+  </div>
+</form>
