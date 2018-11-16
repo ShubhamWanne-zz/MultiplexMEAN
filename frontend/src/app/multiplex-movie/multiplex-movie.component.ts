@@ -10,7 +10,6 @@ import { MessageService} from "../message.service";
 })
 export class MultiplexMovieComponent implements OnInit {
   movieList: Movie[] = [];
-  movie: Movie;
   subscription: Subscription;
   constructor(private dataService: DataService, private messageService: MessageService) {
     this.subscription = this.messageService.getMessage()
@@ -19,13 +18,12 @@ export class MultiplexMovieComponent implements OnInit {
   addMovie(message: any){
     if(message._to != "multiplexComponent")
       return;
-    this.movie = message.movie;
     if(message.isEdited){
-      this.updateMovie(this.movie._id,this.movie);
+      this.updateMovie(message.movie._id,message.movie);
       return;
     }
-    this.dataService.addMovie(this.movie).subscribe(movieData => {
-      this.movieList.push(this.movie);
+    this.dataService.addMovie(message.movie).subscribe(movieData => {
+      this.movieList.push(message.movie);
     });
   }
 
