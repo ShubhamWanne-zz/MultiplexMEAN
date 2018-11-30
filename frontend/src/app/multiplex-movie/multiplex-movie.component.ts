@@ -24,6 +24,7 @@ export class MultiplexMovieComponent implements OnInit {
     }
     this.dataService.addMovie(message.movie).subscribe(movieData => {
       this.movieList.push(message.movie);
+      this.getMovies();
     });
   }
 
